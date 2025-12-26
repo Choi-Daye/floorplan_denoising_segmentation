@@ -131,8 +131,7 @@ showing that well-aligned denoised images and labels could further improve segme
 > Tests (2) and (3) were designed with the expectation that denoised images would yield higher segmentation performance.  
 > However, (1) **Raw / Raw** achieved the highest mAP50, while (2) and (3) underperformed due to label alignment with **raw images**, causing mismatches on clean inputs.  
 > The (4) **GT / Clean** test showed noticeable improvement over (2) and (3), indicating that with properly aligned **denoised images and labels**, segmentation performance could be further enhanced.
-
-[Insert Segmentation Visualization Samples Here]
+<img width="243" height="488" alt="Image" src="https://github.com/user-attachments/assets/ccbb4361-5d00-4e4c-929c-77018306fc79" />
 
 **Insights:**  
 - Structure restoration > generic noise removal  
