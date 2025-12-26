@@ -100,9 +100,7 @@ showing that well-aligned denoised images and labels could further improve segme
 - **Full Image:** Entire image  
 - **Noise ROI:** Regions containing text, dimensions, and hatch patterns  
 - **Structure ROI:** Regions with architectural elements (walls, doors, windows)
-
-[Insert Denoising Evaluation Images Here]  
-*(Recommended: grid of input → prediction → GT for each ROI)*  
+<img width="869" height="281" alt="Image" src="https://github.com/user-attachments/assets/b67abe31-7223-4c14-be8b-77c276afbde7" />
 
 **Quantitative Results**
 
