@@ -29,7 +29,7 @@ This project, developed by the **Construction AI & Robotics Team**, proposes a *
 | SSIM | 0.9503 | 0.9978 | 0.9852 |
 | LPIPS | 0.0629 | 0.0026 | 0.0361 |
 
-**Segmentation Results(mAP50):**  
+**Segmentation Results (mAP50):**  
 
 | Dataset | **mAP50** |
 |----------|-----------|
@@ -57,9 +57,11 @@ showing that well-aligned denoised images and labels could further improve segme
   - Dice for overlapping region accuracy  
   - SSIM for perceptual similarity
   - *Class-weighted loss applied:* **background: 0.1 | wall: 0.3 | window/door: 1.0**
+    - Class weights were applied using the **Mask dataset**, assigning higher importance to structural regions such as walls, windows, and doors.
+
 
 **Training Settings**
-- Dataset: 3,000 images (train)  
+- Dataset split: **Train 3,000 / Validation 300 / Test 300**  
 - Epochs: 200 (early stopping enabled)  
 - Augmentation:  
   - Flip (50%), translate ±10px, scale ±10%, rotation ±15° (70% prob.)  
@@ -78,22 +80,62 @@ showing that well-aligned denoised images and labels could further improve segme
     - **Masks** — region maps for wall, window, and door  
   - These splits were derived from the AI-Hub dataset and refined for noise removal and structure segmentation tasks.
 
+- **Characteristics of Drawing Data:**
+- Binary-like high-contrast composition (**0 and 1**).  
+- Extremely sensitive to pixel-level variations — even single-pixel noise significantly affects object detection and segmentation accuracy.
+
+
 ---
 
 ## 5. Experiments  
 
-- **Denoising Models:**  
-  - Residual U-Net / Attention U-Net / Residual-Attention U-Net *(best)*  
+- **Denoising Model:**  
+  - Residual-Attention U-Net
+- **Segmentation Model:**
+  - Mask R-CNN
+ 
+### 5.1 Denoising Evaluation  
 
-- **Segmentation Test Variants (Mask R-CNN : Train Dataset / Test Dataset):**
-  1. Raw / Raw  
-  2. Raw / Clean  
-  3. Clean / Clean  
-  4. GT / Clean  
+**Evaluation Regions**
+- **Full Image:** Entire image  
+- **Noise ROI:** Regions containing text, dimensions, and hatch patterns  
+- **Structure ROI:** Regions with architectural elements (walls, doors, windows)
+
+[Insert Denoising Evaluation Images Here]  
+*(Recommended: grid of input → prediction → GT for each ROI)*  
+
+**Quantitative Results**
+
+| Metric | Full Image | Noise ROI | Structure ROI |
+|--------|-------------|------------|----------------|
+| PSNR | 23.64 | 35.43 | 24.14 |
+| SSIM | 0.9503 | 0.9978 | 0.9852 |
+| LPIPS | 0.0629 | 0.0026 | 0.0361 |
+
+[Insert Denoising Prediction Samples Here]
+
+---
+
+### 5.2 Segmentation Tests  
+
+**Segmentation Test Variants (Train Dataset / Test Dataset):**
+1. Raw / Raw  
+2. Raw / Clean  
+3. Clean / Clean  
+4. GT / Clean
+ 
+| Dataset | **mAP50** |
+|----------|-----------|
+| **Raw / Raw** | **0.2090** |
+| **Raw / Clean** | 0.1032 |
+| **Clean / Clean** | 0.0598 |
+| **GT / Clean** | 0.1141 |
 
 > Tests (2) and (3) were designed with the expectation that denoised images would yield higher segmentation performance.  
 > However, (1) **Raw / Raw** achieved the highest mAP50, while (2) and (3) underperformed due to label alignment with **raw images**, causing mismatches on clean inputs.  
 > The (4) **GT / Clean** test showed noticeable improvement over (2) and (3), indicating that with properly aligned **denoised images and labels**, segmentation performance could be further enhanced.
+
+[Insert Segmentation Visualization Samples Here]
 
 **Insights:**  
 - Structure restoration > generic noise removal  
