@@ -109,8 +109,7 @@ showing that well-aligned denoised images and labels could further improve segme
 | PSNR | 23.64 | 35.43 | 24.14 |
 | SSIM | 0.9503 | 0.9978 | 0.9852 |
 | LPIPS | 0.0629 | 0.0026 | 0.0361 |
-
-[Insert Denoising Prediction Samples Here]
+<img width="1061" height="934" alt="Image" src="https://github.com/user-attachments/assets/bbedbec8-73aa-4a91-8066-d7384b6e398f" />
 
 ---
 
