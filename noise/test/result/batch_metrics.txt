@@ -1,0 +1,5 @@
+BATCH EVALUATION RESULTS (N=300)
+======================================================================
+Full Image     - MSE: 0.0046, PSNR: 23.64±1.52, SSIM: 0.9503, LPIPS: 0.0629
+Noise ROI      - MSE: 0.0034, PSNR: 35.43±3.41, SSIM: 0.9978, LPIPS: 0.0026
+Structure ROI  - MSE: 0.0608, PSNR: 24.14±1.68, SSIM: 0.9852, LPIPS: 0.0361

@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# Python virtual env
+const/
+
+# Python cache
+__paache__/
+*.pyc6
+
+# model checkpoints
+*.pth
+*.pt
+noise/model/
+detection/checkpoint/
